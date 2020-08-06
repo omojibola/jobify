@@ -1,0 +1,44 @@
+.form-container {
+  display: flex;
+  width: 600px;
+  margin: auto;
+  position: relative;
+
+  .fa-search {
+    position: absolute;
+    top: 18px;
+    left: 10px;
+    font-size: 15px;
+    color: #061d88;
+    opacity: 0.6;
+  }
+
+  .input-form {
+    flex: 1;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px #eee solid;
+    outline: none;
+    text-indent: 30px;
+    box-shadow: 0 5px 10px rgba(8, 112, 184, 0.4);
+
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+}
+
+button {
+  background-color: #061d88;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 30px;
+  box-shadow: 0 5px 10px rgba(8, 112, 184, 0.4);
+  margin-left: 20px;
+
+  &:hover {
+    background-color: #0960f2;
+    transition: ease-out 0.5s;
+  }
+}
