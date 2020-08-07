@@ -1,12 +1,26 @@
 import React, { Component } from "react";
-import JOB_DATA from "./JobData";
 import JobList from "./JobList";
 import SearchBar from "../SearchBar/SearchBar";
+import Preloader from "../Preloader";
 
 export class Jobs extends Component {
   constructor() {
     super();
-    this.state = { jobs: JOB_DATA, searchField: "" };
+    this.state = { jobs: [], searchField: "", loading: false };
+  }
+
+  getJobs = async () => {
+    this.setState({ loading: true });
+    const res = await fetch("http://localhost:5000/jobs");
+    const data = await res.json();
+    this.setState({
+      jobs: data,
+    });
+    this.setState({ loading: false });
+  };
+
+  componentDidMount() {
+    this.getJobs();
   }
 
   handleChange = (e) => {
@@ -14,18 +28,28 @@ export class Jobs extends Component {
   };
 
   render() {
-    const { jobs, searchField } = this.state;
+    const { jobs, searchField, loading } = this.state;
     const filteredJobs = jobs.filter((job) =>
       job.title.toLowerCase().includes(searchField.toLowerCase())
     );
+
+    if (loading) {
+      return <Preloader />;
+    }
 
     return (
       <div>
         <SearchBar handleChange={this.handleChange} />
         <div className='job-container'>
-          {filteredJobs.map(({ id, ...otherProps }) => (
-            <JobList key={id} {...otherProps} />
-          ))}
+          {!loading && jobs.length === 0 ? (
+            <p className='text-center' style={{ color: "#061d88" }}>
+              No jobs available..
+            </p>
+          ) : (
+            filteredJobs.map(({ id, ...otherProps }) => (
+              <JobList key={id} {...otherProps} />
+            ))
+          )}
         </div>
       </div>
     );

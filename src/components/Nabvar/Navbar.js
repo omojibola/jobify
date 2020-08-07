@@ -8,6 +8,10 @@ const Navbar = () => (
       <Link to='/'>Jobify.</Link>
     </div>
     <div className='nav-link'>
+      <Link className='link' to='/'>
+        Jobs
+      </Link>
+
       <Link className='link' to='/companies'>
         Companies
       </Link>

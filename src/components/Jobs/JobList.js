@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+
 import "./Jobs.styles.scss";
 
 const JobList = ({ title, location, type, company }) => {
@@ -23,6 +24,9 @@ const JobList = ({ title, location, type, company }) => {
       >
         {type}
       </div>
+      <a href='#' className='secondary-content'>
+        <i className='material-icons grey-text'>delete</i>
+      </a>
     </Card>
   );
 };
