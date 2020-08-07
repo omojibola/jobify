@@ -2,15 +2,15 @@ import React from "react";
 
 import "./SearchBar.styles.scss";
 
-const SearchBar = () => (
+const SearchBar = ({ handleChange }) => (
   <div className='form-container'>
-    <span class='fa fa-search'></span>
+    <span className='fa fa-search'></span>
     <input
       className='input-form'
       type='search'
       placeholder='search jobs by title'
+      onChange={handleChange}
     />
-    <button>Search</button>
   </div>
 );
 

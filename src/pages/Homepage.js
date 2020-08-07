@@ -1,11 +1,12 @@
 import React from "react";
 import Hero from "../components/Hero";
-import SearchBar from "../components/SearchBar/SearchBar";
+import Jobs from "../components/Jobs/Jobs";
 
 const Homepage = () => (
   <div>
     <Hero />
-    <SearchBar />
+
+    <Jobs />
   </div>
 );
 
