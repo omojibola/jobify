@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Card, Modal, Button, Alert } from "react-bootstrap";
+import { Card, Modal, Button } from "react-bootstrap";
 import { deleteJob, setCurrent } from "../../actions/jobActions";
 import { Link } from "react-router-dom";
 
 import "./Jobs.styles.scss";
 
-const JobList = ({ jobs, deleteJob, setCurrent }) => {
+const JobList = ({ jobs, deleteJob, setCurrent, toggle }) => {
   //Modal
   const [show, setShow] = useState(false);
-
-  //Alert
-  const [alert, setAlert] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const onDelete = () => {
     deleteJob(jobs.id);
-    setAlert(true);
+    toggle();
   };
 
   return (
@@ -46,7 +43,7 @@ const JobList = ({ jobs, deleteJob, setCurrent }) => {
           {jobs.type}
         </div>
 
-        <a href='#' onClick={onDelete} className='secondary-content'>
+        <a href='/' onClick={onDelete} className='secondary-content'>
           <i className='material-icons grey-text'>delete</i>
         </a>
 

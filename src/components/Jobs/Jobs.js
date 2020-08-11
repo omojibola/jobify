@@ -5,18 +5,24 @@ import JobList from "./JobList";
 import SearchBar from "../SearchBar/SearchBar";
 import { getJobs } from "../../actions/jobActions";
 import Preloader from "../Preloader";
+import { Alert } from "reactstrap";
 
 export class Jobs extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { searchField: "", visible: 3 };
+    this.state = { searchField: "", visible: 3, show: false };
   }
 
   componentDidMount() {
     this.props.getJobs();
   }
 
+  toggle = () => {
+    this.setState({
+      show: !this.state.show,
+    });
+  };
   handleChange = (e) => {
     this.setState({ searchField: e.target.value });
   };
@@ -29,7 +35,7 @@ export class Jobs extends Component {
 
   render() {
     const { jobs, loading } = this.props;
-    const { visible, searchField } = this.state;
+    const { visible, searchField, show } = this.state;
     const filteredJobs = jobs.filter((job) =>
       job.title.toLowerCase().includes(searchField.toLowerCase())
     );
@@ -41,6 +47,9 @@ export class Jobs extends Component {
     return (
       <div>
         <SearchBar handleChange={this.handleChange} />
+        <Alert variant='success' isOpen={show} toggle={this.toggle}>
+          <p className='text-center'> Job has been deleted successfully</p>
+        </Alert>
         <div className='job-container'>
           {!loading && jobs.length === 0 ? (
             <p className='text-center' style={{ color: "#061d88" }}>
@@ -49,7 +58,9 @@ export class Jobs extends Component {
           ) : (
             filteredJobs
               .slice(0, visible)
-              .map((job) => <JobList jobs={job} key={job.id} />)
+              .map((job) => (
+                <JobList jobs={job} key={job.id} toggle={this.toggle} />
+              ))
           )}
         </div>
         <div className='load-more'>

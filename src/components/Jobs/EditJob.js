@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { editJob } from "../../actions/jobActions";
 import "./Jobs.styles.scss";
 import { Form, Col, Row } from "react-bootstrap";
+import { Alert } from "reactstrap";
 
 class EditJob extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class EditJob extends Component {
       type: "Full time",
       description: "",
       dateAdded: new Date(),
+      visible: false,
     };
   }
 
@@ -31,6 +33,11 @@ class EditJob extends Component {
     }
   }
 
+  toggle = () => {
+    this.setState({
+      visible: !this.state.visible,
+    });
+  };
   handleChange = (e) => {
     const { value, name } = e.target;
     this.setState({ [name]: value });
@@ -39,7 +46,7 @@ class EditJob extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { title, location, company, description, type } = this.state;
-    const { current } = this.props;
+    const { current, editJob } = this.props;
     if (title === "" || location === "" || company === "") {
     } else {
       const updatedJob = {
@@ -52,8 +59,8 @@ class EditJob extends Component {
         date: new Date(),
       };
 
-      this.props.editJob(updatedJob);
-
+      editJob(updatedJob);
+      this.toggle();
       this.setState({
         title: "",
         location: "",
@@ -65,82 +72,87 @@ class EditJob extends Component {
   };
 
   render() {
-    const { title, location, company, type, description } = this.state;
+    const { title, location, company, type, description, visible } = this.state;
     return (
-      <div className='form-container'>
-        <Form>
-          <Form.Group>
-            <Form.Label className='title'>Job Title</Form.Label>
-            <Form.Control
-              type='text'
-              name='title'
-              value={title}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label className='title'>Company Name</Form.Label>
-            <Form.Control
-              type='text'
-              name='company'
-              value={company}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label className='title'>Location</Form.Label>
-            <Form.Control
-              type='text'
-              name='location'
-              value={location}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label className='title'>Description</Form.Label>
-            <Form.Control
-              as='textarea'
-              type='text'
-              name='description'
-              value={description}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group as={Row}>
-            <Col sm={10}>
-              <Form.Check
-                className='title'
-                type='radio'
-                label='Full-Time'
-                name='type'
-                value='Full time'
+      <div>
+        <Alert variant='success' isOpen={visible} toggle={this.toggle}>
+          <p className='text-center'> Job has been edited successfully</p>
+        </Alert>
+        <div className='form-container'>
+          <Form>
+            <Form.Group>
+              <Form.Label className='title'>Job Title</Form.Label>
+              <Form.Control
+                type='text'
+                name='title'
+                value={title}
                 onChange={this.handleChange}
-                checked={type === "Full time"}
-                id='formHorizontalRadios1'
               />
-            </Col>
-            <Col sm={10}>
-              <Form.Check
-                className='title'
-                type='radio'
-                label='Part-Time'
-                name='type'
-                onChange={this.handleChange}
-                value='Part time'
-                id='formHorizontalRadios1'
-              />
-            </Col>
-          </Form.Group>
+            </Form.Group>
 
-          <button
-            style={{ backgroundColor: " #061d88", width: "100%", margin: 0 }}
-            type='submit'
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </button>
-        </Form>
+            <Form.Group>
+              <Form.Label className='title'>Company Name</Form.Label>
+              <Form.Control
+                type='text'
+                name='company'
+                value={company}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className='title'>Location</Form.Label>
+              <Form.Control
+                type='text'
+                name='location'
+                value={location}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className='title'>Description</Form.Label>
+              <Form.Control
+                as='textarea'
+                type='text'
+                name='description'
+                value={description}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Col sm={10}>
+                <Form.Check
+                  className='title'
+                  type='radio'
+                  label='Full-Time'
+                  name='type'
+                  value='Full time'
+                  onChange={this.handleChange}
+                  checked={type === "Full time"}
+                  id='formHorizontalRadios1'
+                />
+              </Col>
+              <Col sm={10}>
+                <Form.Check
+                  className='title'
+                  type='radio'
+                  label='Part-Time'
+                  name='type'
+                  onChange={this.handleChange}
+                  value='Part time'
+                  id='formHorizontalRadios1'
+                />
+              </Col>
+            </Form.Group>
+
+            <button
+              style={{ backgroundColor: " #061d88", width: "100%", margin: 0 }}
+              type='submit'
+              onClick={this.handleSubmit}
+            >
+              Submit
+            </button>
+          </Form>
+        </div>
       </div>
     );
   }
