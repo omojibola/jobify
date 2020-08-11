@@ -4,6 +4,9 @@ import {
   JOBS_ERROR,
   ADD_JOB,
   DELETE_JOB,
+  SET_CURRENT,
+  CLEAR_CURRENT,
+  EDIT_JOB,
 } from "./types";
 
 //get jobs from server
@@ -25,6 +28,7 @@ export const getJobs = () => async (dispatch) => {
   }
 };
 
+//set loading to true
 export const setLoading = () => {
   return {
     type: SET_LOADING,
@@ -75,4 +79,44 @@ export const deleteJob = (id) => async (dispatch) => {
       payload: error.response.data,
     });
   }
+};
+
+//edit job on server
+export const editJob = (job) => async (dispatch) => {
+  try {
+    setLoading();
+    const res = await fetch(`http://localhost:5000/jobs/${job.id}`, {
+      method: "PUT",
+      body: JSON.stringify(job),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+    dispatch({
+      type: EDIT_JOB,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: JOBS_ERROR,
+      payload: error.response.data,
+    });
+  }
+};
+
+//set current job
+export const setCurrent = (job) => {
+  return {
+    type: SET_CURRENT,
+    payload: job,
+  };
+};
+
+//clear current job
+export const clearCurrent = () => {
+  return {
+    type: CLEAR_CURRENT,
+  };
 };

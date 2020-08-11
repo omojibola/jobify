@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import M from "materialize-css/dist/js/materialize.min.js";
+import { connect } from "react-redux";
+import { editJob } from "../../actions/jobActions";
+import "./Jobs.styles.scss";
 import { Form, Col, Row } from "react-bootstrap";
 
-class EditJobModal extends Component {
-  constructor() {
-    super();
+class EditJob extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
       title: "",
@@ -12,7 +14,21 @@ class EditJobModal extends Component {
       company: "",
       type: "Full time",
       description: "",
+      dateAdded: new Date(),
     };
+  }
+
+  componentDidMount() {
+    const { current } = this.props;
+    if (current) {
+      this.setState({
+        title: current.title,
+        location: current.location,
+        company: current.company,
+        type: current.type,
+        description: current.description,
+      });
+    }
   }
 
   handleChange = (e) => {
@@ -23,10 +39,21 @@ class EditJobModal extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { title, location, company, description, type } = this.state;
+    const { current } = this.props;
     if (title === "" || location === "" || company === "") {
-      M.toast({ html: "Fields Cannot be empty" });
     } else {
-      console.log(title, location, company, description, type);
+      const updatedJob = {
+        id: current.id,
+        title,
+        location,
+        company,
+        type,
+        description,
+        date: new Date(),
+      };
+
+      this.props.editJob(updatedJob);
+
       this.setState({
         title: "",
         location: "",
@@ -40,8 +67,8 @@ class EditJobModal extends Component {
   render() {
     const { title, location, company, type, description } = this.state;
     return (
-      <div id='edit-job-modal' className='form-container modal'>
-        <Form className='modal'>
+      <div className='form-container'>
+        <Form>
           <Form.Group>
             <Form.Label className='title'>Job Title</Form.Label>
             <Form.Control
@@ -118,5 +145,7 @@ class EditJobModal extends Component {
     );
   }
 }
-
-export default EditJobModal;
+const mapStateToProps = (state) => ({
+  current: state.job.current,
+});
+export default connect(mapStateToProps, { editJob })(EditJob);

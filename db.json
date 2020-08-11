@@ -33,30 +33,13 @@
       "company": "Schneider Electric"
     },
     {
-      "title": "Sales Representatives needed for AkiddieNG",
-      "location": "Lagos",
+      "id": 7,
+      "title": "Sales Representatives needed for AkiddieNG , NYSC",
+      "location": "Lagos,Nigeria",
+      "company": "Redox Corp",
       "type": "Full time",
       "description": "Sales Representatives needed for AkiddieNG, pay is 900k pa, with benefits",
-      "company": "Redox Corp",
-      "id": 7
-    },
-    {
-      "title": "chartered accountant",
-      "location": "LAGOS",
-      "company": "Redox Corps",
-      "type": "Full time",
-      "description": "test test",
-      "date": "2020-08-10T21:01:46.835Z",
-      "id": 9
-    },
-    {
-      "title": "TEST",
-      "location": "YABA",
-      "company": "Redox Corps",
-      "type": "Full time",
-      "description": "",
-      "date": "2020-08-10T23:20:41.590Z",
-      "id": 10
+      "date": "2020-08-11T01:21:08.463Z"
     }
   ]
 }

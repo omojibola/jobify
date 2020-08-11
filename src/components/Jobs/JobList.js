@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Card, Modal, Button, Alert } from "react-bootstrap";
-import { deleteJob } from "../../actions/jobActions";
-import M from "materialize-css/dist/js/materialize.min.js";
+import { deleteJob, setCurrent } from "../../actions/jobActions";
+import { Link } from "react-router-dom";
 
 import "./Jobs.styles.scss";
 
-const JobList = ({ jobs, deleteJob }) => {
+const JobList = ({ jobs, deleteJob, setCurrent }) => {
   //Modal
   const [show, setShow] = useState(false);
 
@@ -45,9 +45,16 @@ const JobList = ({ jobs, deleteJob }) => {
         >
           {jobs.type}
         </div>
+
         <a href='#' onClick={onDelete} className='secondary-content'>
           <i className='material-icons grey-text'>delete</i>
         </a>
+
+        <Link to='/edit-job' onClick={() => setCurrent(jobs)}>
+          {" "}
+          <i className='material-icons grey-text'>edit</i>
+        </Link>
+
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Details</Modal.Title>
@@ -78,4 +85,4 @@ const JobList = ({ jobs, deleteJob }) => {
   );
 };
 
-export default connect(null, { deleteJob })(JobList);
+export default connect(null, { deleteJob, setCurrent })(JobList);
