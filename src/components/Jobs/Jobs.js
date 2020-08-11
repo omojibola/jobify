@@ -1,27 +1,20 @@
 import React, { Component } from "react";
 import "./Jobs.styles.scss";
+import { connect } from "react-redux";
 import JobList from "./JobList";
 import SearchBar from "../SearchBar/SearchBar";
+import { getJobs } from "../../actions/jobActions";
 import Preloader from "../Preloader";
 
 export class Jobs extends Component {
-  constructor() {
-    super();
-    this.state = { jobs: [], searchField: "", loading: false, visible: 3 };
+  constructor(props) {
+    super(props);
+
+    this.state = { searchField: "", visible: 3 };
   }
 
-  getJobs = async () => {
-    this.setState({ loading: true });
-    const res = await fetch("http://localhost:5000/jobs");
-    const data = await res.json();
-    this.setState({
-      jobs: data,
-    });
-    this.setState({ loading: false });
-  };
-
   componentDidMount() {
-    this.getJobs();
+    this.props.getJobs();
   }
 
   handleChange = (e) => {
@@ -30,12 +23,13 @@ export class Jobs extends Component {
 
   loadMore = (e) => {
     this.setState((old) => {
-      return { visible: old.visible + 1 };
+      return { visible: old.visible + 3 };
     });
   };
 
   render() {
-    const { jobs, searchField, loading, visible } = this.state;
+    const { jobs, loading } = this.props;
+    const { visible, searchField } = this.state;
     const filteredJobs = jobs.filter((job) =>
       job.title.toLowerCase().includes(searchField.toLowerCase())
     );
@@ -55,9 +49,7 @@ export class Jobs extends Component {
           ) : (
             filteredJobs
               .slice(0, visible)
-              .map(({ id, ...otherProps }) => (
-                <JobList key={id} {...otherProps} />
-              ))
+              .map((job) => <JobList jobs={job} key={job.id} />)
           )}
         </div>
         <div className='load-more'>
@@ -70,4 +62,9 @@ export class Jobs extends Component {
   }
 }
 
-export default Jobs;
+const mapStateToProps = (state) => ({
+  jobs: state.job.jobs,
+  loading: state.job.loading,
+});
+
+export default connect(mapStateToProps, { getJobs })(Jobs);

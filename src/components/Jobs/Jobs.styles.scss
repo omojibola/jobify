@@ -1,6 +1,7 @@
 .title {
   color: #061d88;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .badge {
@@ -41,9 +42,9 @@ form {
 
 .load-more {
   text-align: center;
+}
 
-  button {
-    border: none;
-    outline: none;
-  }
+button {
+  border: none;
+  outline: none;
 }

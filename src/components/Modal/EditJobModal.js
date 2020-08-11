@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addJob } from "../../actions/jobActions";
-import "./Jobs.styles.scss";
+import M from "materialize-css/dist/js/materialize.min.js";
 import { Form, Col, Row } from "react-bootstrap";
 
-class AddJob extends Component {
-  constructor(props) {
-    super(props);
+class EditJobModal extends Component {
+  constructor() {
+    super();
 
     this.state = {
       title: "",
@@ -14,7 +12,6 @@ class AddJob extends Component {
       company: "",
       type: "Full time",
       description: "",
-      dateAdded: new Date(),
     };
   }
 
@@ -27,18 +24,9 @@ class AddJob extends Component {
     e.preventDefault();
     const { title, location, company, description, type } = this.state;
     if (title === "" || location === "" || company === "") {
+      M.toast({ html: "Fields Cannot be empty" });
     } else {
-      const newJob = {
-        title,
-        location,
-        company,
-        type,
-        description,
-        date: new Date(),
-      };
-
-      this.props.addJob(newJob);
-
+      console.log(title, location, company, description, type);
       this.setState({
         title: "",
         location: "",
@@ -52,8 +40,8 @@ class AddJob extends Component {
   render() {
     const { title, location, company, type, description } = this.state;
     return (
-      <div className='form-container'>
-        <Form>
+      <div id='edit-job-modal' className='form-container modal'>
+        <Form className='modal'>
           <Form.Group>
             <Form.Label className='title'>Job Title</Form.Label>
             <Form.Control
@@ -131,4 +119,4 @@ class AddJob extends Component {
   }
 }
 
-export default connect(null, { addJob })(AddJob);
+export default EditJobModal;

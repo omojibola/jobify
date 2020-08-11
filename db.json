@@ -5,6 +5,7 @@
       "title": "Frontend developer",
       "location": "Abuja",
       "type": "Part time",
+      "description": " we need a frontend developer who is vast in react and react native, can consume APIS, knowledge of redux, SASS and bootstrap",
       "company": "tregital"
     },
     {
@@ -12,6 +13,7 @@
       "title": "Human Resource Manager",
       "location": "PortHarcourt",
       "type": "Full time",
+      "description": " Human resource Manager with 5+ years of experience is needed for an urgent job. fintech company ",
       "company": "A&B"
     },
     {
@@ -19,6 +21,7 @@
       "title": "ReactJS Developer",
       "location": "Lagos",
       "type": "Part time",
+      "description": " we need a ReactJs developer who is vast in react and react native, can consume APIS, knowledge of redux, SASS and bootstrap, extensive knowledge is firebase is a plus",
       "company": "CWAY Foods"
     },
     {
@@ -26,14 +29,34 @@
       "title": "Electrical Engineer",
       "location": "Ibadan",
       "type": "Full time",
+      "description": "  An electrical engineer with minimum of 2 years experience is needed , knowledge of electrical designs, automation testiong is required ",
       "company": "Schneider Electric"
     },
     {
-      "title": "Account Officer Needed for fast job",
-      "location": "Abeokuta",
+      "title": "Sales Representatives needed for AkiddieNG",
+      "location": "Lagos",
       "type": "Full time",
+      "description": "Sales Representatives needed for AkiddieNG, pay is 900k pa, with benefits",
       "company": "Redox Corp",
-      "id": 6
+      "id": 7
+    },
+    {
+      "title": "chartered accountant",
+      "location": "LAGOS",
+      "company": "Redox Corps",
+      "type": "Full time",
+      "description": "test test",
+      "date": "2020-08-10T21:01:46.835Z",
+      "id": 9
+    },
+    {
+      "title": "TEST",
+      "location": "YABA",
+      "company": "Redox Corps",
+      "type": "Full time",
+      "description": "",
+      "date": "2020-08-10T23:20:41.590Z",
+      "id": 10
     }
   ]
 }
