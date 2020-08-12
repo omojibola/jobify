@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.styles.scss";
+import "./Header.styles.scss";
 
-const Navbar = () => (
+const Header = () => (
   <div className='navbar-container'>
     <div className='logo-container'>
       <Link to='/'>Jobify.</Link>
@@ -25,4 +25,4 @@ const Navbar = () => (
   </div>
 );
 
-export default Navbar;
+export default Header;
