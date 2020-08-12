@@ -1,6 +1,8 @@
 {
   "name": "job-post",
   "version": "0.1.0",
+  "description": "Simple Job Portal",
+  "main": "server.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
