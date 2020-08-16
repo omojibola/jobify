@@ -1,4 +1,4 @@
-Clone the repo
+1- Clone the repo
 If you haven't done so yet:
 
 Install Git
@@ -6,10 +6,10 @@ Install Node
 Then clone this repo to your local machine to get started.
 
 
-npm install
+2- npm install
 Installs all dependencies associated with the application.
 
-6 - Run application locally.
+3- Run application locally.
 
 npm run dev
 Runs the application in development mode
