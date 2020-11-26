@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 
 import './App.css';
 import Header from './components/header/Header';
-import Products from './components/Products';
 import ContextDataProvider from './Context';
+import Section from './Section';
 
 const App = () => {
   return (
     <ContextDataProvider>
       <div className="App">
         <Header />
-        <Products />
+        <Section />
       </div>
     </ContextDataProvider>
   );

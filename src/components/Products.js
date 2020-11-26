@@ -5,7 +5,6 @@ import styles from './Products.module.scss';
 
 const Products = () => {
   const { products, addToCart } = useContext(DataContext);
-  console.log(products);
   return (
     <div id="product" className="container">
       <div className="row">

@@ -31,21 +31,13 @@ const Header = () => {
           <li>
             <Link to="/product">Product</Link>
           </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/login">Login / Register</Link>
-          </li>
+
           <li className="close" onClick={() => toggleMenu()}>
             <img src={Close} alt="" width="20" />
           </li>
         </ul>
         <div className="nav-cart">
-          <span>{cart.length || 5}</span>
+          <span>{cart.length}</span>
           <Link to="/cart">
             <img src={CartIcon} alt="" width="20" />
           </Link>
